@@ -1,0 +1,31 @@
+<!doctype html>
+    <html lang="en">
+      <head>
+          <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <title>Dev Environment</title>
+      </head>
+      <body>
+        <nav class="navbar navbar-dark bg-dark">
+          <!--<a class="navbar-brand" href="#">
+            <img src="/static/images/user.png" height="40" width="40" alt=""> Contacts
+          </a>-->
+            <a class="navbar-brand menu_icon" onclick="openNav()">
+              <img src="/static/images/menu.png" alt="">
+            </a>
+        </nav>
+        <div class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="/contacts">Contacts</a>
+        </div>
+        {% block content %}  {% endblock %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="/static/js/custom.js"></script>
+      </body>
+    </html>

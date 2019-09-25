@@ -1,0 +1,80 @@
+.sidenav {
+  background-color: #111;
+  padding-top: 20px;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  /*color: rgb(255, 255, 255);*/
+  cursor: pointer;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.mainnav {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+html, body {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.container-fluid, .row{
+  height: 100%;
+}
+
+.menu_icon {
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.new_contact {
+  padding-bottom: 10px;
+}
+
+#edit_contact {
+  float: right;
+  padding-right: 10px;
+  background: none !important;
+}
+
+#delete_contact {
+  float: right;
+  background: none !important;
+}
+
+.column5 {
+  display: none;
+}
