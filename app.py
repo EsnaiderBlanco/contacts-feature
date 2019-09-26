@@ -1,39 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash 
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine, Column, Integer, String, update
-from sqlalchemy.ext.declarative import declarative_base
+from database import Session, Base
+from models import Contact
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
 
-DATABASE_URI = 'postgresql://postgres:postgres@localhost:5433/nitro'
-
-engine = create_engine(DATABASE_URI)
-
-Session = sessionmaker(bind=engine)
-
-Base = declarative_base()
-
-class Contact(Base):
-    __tablename__ = 'tb_contacts'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)    
-    phone_number = Column(Integer)
-    email = Column(String)
-    description = Column(String)
-    
-    def __init__(self, name, phone_number, email, description):
-        #self.id = id
-        self.name = name
-        self.email = email
-        self.phone_number = phone_number
-        self.description = description
-    
-    def __repr__(self):
-        return "{},{},{},{}".format(self.name, self.phone_number, self.email, self.description)
-
-def get_all_contacs(db_session):
+def _get_all_contacs(db_session):
     try:
         contacts = db_session.query(Contact).order_by(Contact.id)
     except:
@@ -43,7 +16,7 @@ def get_all_contacs(db_session):
         db_session.close()
         return contacts
 
-def create_new_contact(db_session, contact_info):
+def _insert_contact(db_session, contact_info):
     status = False
     try:
         db_session.add(contact_info)
@@ -56,7 +29,7 @@ def create_new_contact(db_session, contact_info):
         db_session.close()
         return status        
 
-def update_contact(db_session, contact_info, contact_id):
+def _update_contact(db_session, contact_info, contact_id):
     status = False
     try:
         obj_to_update = db_session.query(Contact).filter_by(id=contact_id).first()
@@ -74,7 +47,7 @@ def update_contact(db_session, contact_info, contact_id):
         db_session.close()
         return status
     
-def asasas(db_session, contact_id):
+def _delete_contac(db_session, contact_id):
     status = False
     try:
         obj_to_delete = db_session.query(Contact).filter_by(id=contact_id).first()
@@ -97,7 +70,7 @@ def display_index():
 def get_contacts():
     print("Displaying table")
     db_session = Session()
-    data = get_all_contacs(db_session)
+    data = _get_all_contacs(db_session)
     return render_template('contacts.html', data=data)
 
 @app.route("/submit", methods=['POST'])
@@ -109,7 +82,7 @@ def new_contact():
         description = request.form['description']        
         contact_info = Contact(name,phone_number,email,description)        
         db_session = Session()
-        result = create_new_contact(db_session,contact_info)        
+        result = _insert_contact(db_session,contact_info)        
         return redirect(url_for('get_contacts'))
     
 @app.route("/edit-contact", methods=["POST"])
@@ -122,17 +95,17 @@ def edit_contact():
         description = request.form['description']        
         contact_info = Contact(name,phone_number,email,description)        
         db_session = Session()
-        data = update_contact(db_session, contact_info, id)
+        data = _update_contact(db_session, contact_info, id)
         return redirect(url_for('get_contacts'))      
 
 @app.route("/delete-contact", methods=["POST"])
-def delete_contact():    
+def delete_contact():
     if request.method == 'POST':
         id = request.form['id']               
         db_session = Session()
-        data = asasas(db_session, id)
+        data = _delete_contac(db_session, id)
         return redirect(url_for('get_contacts'))  
     
 if __name__ == '__main__':
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(host='0.0.0.0', port='5000')
+    app.run()
