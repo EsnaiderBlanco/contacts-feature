@@ -86,7 +86,7 @@ def new_contact():
         return redirect(url_for('get_contacts'))
     
 @app.route("/edit-contact", methods=["POST"])
-def it_contact():
+def edit_contact():
     if request.method == 'POST':
         id = request.form['id']
         name = request.form['name']        
