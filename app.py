@@ -82,7 +82,8 @@ def new_contact():
         description = request.form['description']        
         contact_info = Contact(name,phone_number,email,description)        
         db_session = Session()
-        result = _insert_contact(db_session,contact_info)        
+        result = _insert_contact(db_session,contact_info)
+        print("DATABASE-RESULT {}".format(result))
         return redirect(url_for('get_contacts'))
     
 @app.route("/edit-contact", methods=["POST"])

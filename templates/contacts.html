@@ -7,32 +7,32 @@
                   <a href="/contacts" id="test"><button id="btn_refresh_contacts_table" type="button" class="btn btn-dark" > <img src="/static/images/refresh.png" alt=""></button></a>
                   <button id="btn_new_contact" type="button" class="btn btn-dark" data-toggle="modal" data-target="#newContactForm"> <img src="/static/images/add.png" alt=""> Create contact </button>
               </div>
-
-              <table class="table table-striped table-hover" id="contacts">
-                  <thead>
-                      <tr>
-                          <th > Name </th>
-                          <th > Phone Number </th>
-                          <th > Email </th>
-                          <th > Description </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {% for contact in data %}
-                      <tr id={{contact.id}}>                          
-                          <td class="column1" data-column="column1">{{ contact.name }}</td>
-                          <td class="column2" data-column="column2">{{ contact.phone_number }}</td>
-                          <td class="column3" data-column="column3">{{ contact.email }}</td>
-                          <td class="column4" data-column="column4">{{ contact.description }}                           
-                              <button id="delete_contact" type="button" class="btn" data-toggle="modal" data-target="#deleteContactForm"> <img src="/static/images/rubbish-bin.png" alt=""></button>
-                              <button id="edit_contact" type="button" class="btn " data-toggle="modal" data-target="#editContactForm"> <img src="/static/images/edit.png" alt=""></button>
-                          </td>
-                          <td class="column5" data-column="column5">{{ contact.id }}</td>
-                      </tr>
-                      {% endfor %}
-                  </tbody>
-              </table>   
-              
+              <div class="tableFixHead">
+                <table class="table table-striped table-hover" id="contacts">
+                    <thead>
+                        <tr>
+                            <th > Name </th>
+                            <th > Phone Number </th>
+                            <th > Email </th>
+                            <th > Description </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in data %}
+                        <tr id={{contact.id}}>                          
+                            <td class="column1" data-column="column1">{{ contact.name }}</td>
+                            <td class="column2" data-column="column2">{{ contact.phone_number }}</td>
+                            <td class="column3" data-column="column3">{{ contact.email }}</td>
+                            <td class="column4" data-column="column4">{{ contact.description }}                           
+                                <button id="delete_contact" type="button" class="btn" data-toggle="modal" data-target="#deleteContactForm"> <img src="/static/images/rubbish-bin.png" alt=""></button>
+                                <button id="edit_contact" type="button" class="btn " data-toggle="modal" data-target="#editContactForm"> <img src="/static/images/edit.png" alt=""></button>
+                            </td>
+                            <td class="column5" data-column="column5">{{ contact.id }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>   
+              </div>
               <div class="modal fade" id="newContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
