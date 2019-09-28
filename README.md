@@ -21,7 +21,7 @@ flask run
 To run it in your public IP.
 
 ```bash
-flask run --host=0.0.0.
+flask run --host=0.0.0.0
 ```
 
 ## Contributing
