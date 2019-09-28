@@ -12,6 +12,11 @@ pip install foobar
 
 ## Usage
 
+```bash
+$ export FLASK_APP=app.py
+$ export FLASK_ENV=development
+```
+
 To run it locally.
 
 ```bash
