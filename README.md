@@ -7,7 +7,7 @@ Contacts APP was builded with Python3(Flask), the porpuse of the app is create a
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-pip install foobar
+pip install -r requirements.txt
 ```
 
 ## Usage
